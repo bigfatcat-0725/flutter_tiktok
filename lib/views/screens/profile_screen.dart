@@ -75,81 +75,93 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Column(
-                              children: [
-                                Text(
-                                  controller.user['following'],
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
+                            SizedBox(
+                              width: 80,
+                              height: 50,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    controller.user['following'],
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                const Text(
-                                  'Following',
-                                  style: TextStyle(
-                                    fontSize: 14,
+                                  const SizedBox(
+                                    height: 5,
                                   ),
-                                ),
-                              ],
+                                  const Text(
+                                    'Following',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                             Container(
-                              color: Colors.black45,
+                              color: Colors.grey,
                               width: 1,
                               height: 15,
                               margin: const EdgeInsets.symmetric(
                                 horizontal: 15,
                               ),
                             ),
-                            Column(
-                              children: [
-                                Text(
-                                  controller.user['followers'],
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
+                            SizedBox(
+                              width: 80,
+                              height: 50,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    controller.user['followers'],
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                const Text(
-                                  'Followers',
-                                  style: TextStyle(
-                                    fontSize: 14,
+                                  const SizedBox(
+                                    height: 5,
                                   ),
-                                ),
-                              ],
+                                  const Text(
+                                    'Followers',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                             Container(
-                              color: Colors.black45,
+                              color: Colors.grey,
                               width: 1,
                               height: 15,
                               margin: const EdgeInsets.symmetric(
                                 horizontal: 15,
                               ),
                             ),
-                            Column(
-                              children: [
-                                Text(
-                                  controller.user['likes'],
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
+                            SizedBox(
+                              width: 80,
+                              height: 50,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    controller.user['likes'],
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                const Text(
-                                  'Likes',
-                                  style: TextStyle(
-                                    fontSize: 14,
+                                  const SizedBox(
+                                    height: 5,
                                   ),
-                                ),
-                              ],
+                                  const Text(
+                                    'Likes',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),

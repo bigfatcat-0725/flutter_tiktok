@@ -37,6 +37,7 @@ class ProfileController extends GetxController {
     for (var item in myVideos.docs) {
       likes += (item.data()['likes'] as List).length;
     }
+
     var followerDoc = await firestore
         .collection('users')
         .doc(_uid.value)
@@ -50,7 +51,7 @@ class ProfileController extends GetxController {
     followers = followerDoc.docs.length;
     following = followingDoc.docs.length;
 
-    firestore
+    await firestore
         .collection('users')
         .doc(_uid.value)
         .collection('followers')
