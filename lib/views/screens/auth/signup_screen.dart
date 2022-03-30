@@ -1,15 +1,26 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_tiktok/constants.dart';
 import 'package:flutter_tiktok/views/screens/auth/login_screen.dart';
 import 'package:flutter_tiktok/views/widgets/text_input_field.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
-class SignupScreen extends StatelessWidget {
-  SignupScreen({Key? key}) : super(key: key);
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({Key? key}) : super(key: key);
 
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final ImagePicker _picker = ImagePicker();
+  XFile? thumbnailFile;
+
+  void update() => setState(() {});
 
   @override
   Widget build(BuildContext context) {
@@ -20,37 +31,50 @@ class SignupScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "Tiktok Clone",
+              const Text(
+                "TikTok",
                 style: TextStyle(
-                  fontSize: 35,
-                  color: buttonColor,
+                  fontSize: 60,
+                  color: Colors.white,
                   fontWeight: FontWeight.w900,
                 ),
               ),
-              const Text(
-                "Register",
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
               const SizedBox(
-                height: 25,
+                height: 30,
               ),
               Stack(
                 children: [
-                  const CircleAvatar(
-                    radius: 64,
-                    backgroundImage: NetworkImage(
-                        'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'),
-                    backgroundColor: Colors.black,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(75),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      width: 150,
+                      height: 150,
+                      child: thumbnailFile != null
+                          ? Image.file(
+                              File(thumbnailFile!.path),
+                              fit: BoxFit.cover,
+                            )
+                          : Image.asset(
+                              'assets/tiktok-logo.jpeg',
+                              fit: BoxFit.cover,
+                            ),
+                    ),
                   ),
                   Positioned(
                     bottom: -10,
                     left: 80,
                     child: IconButton(
-                      onPressed: () => authController.pickImage(),
+                      onPressed: () async {
+                        thumbnailFile = await _picker.pickImage(
+                          source: ImageSource.gallery,
+                          imageQuality: 10,
+                        );
+                        authController.pickImage(thumbnailFile);
+                        update();
+                      },
                       icon: const Icon(
                         Icons.add_a_photo,
                       ),
@@ -59,7 +83,7 @@ class SignupScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 15,
+                height: 30,
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -131,14 +155,14 @@ class SignupScreen extends StatelessWidget {
                 children: [
                   const Text(
                     "Already have an account? ",
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 15),
                   ),
                   InkWell(
                     onTap: () => Get.to(() => LoginScreen()),
                     child: Text(
                       "Login",
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 15,
                         color: buttonColor,
                       ),
                     ),

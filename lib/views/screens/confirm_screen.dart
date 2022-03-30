@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_tiktok/constants.dart';
 import 'package:flutter_tiktok/controllers/upload_video_controller.dart';
 import 'package:flutter_tiktok/views/widgets/text_input_field.dart';
 import 'package:get/get.dart';
@@ -104,8 +105,9 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                 _captionController.text,
                 widget.videoPath,
               ),
+              style: ElevatedButton.styleFrom(primary: buttonColor),
               child: const Text(
-                "Share!",
+                "Share",
                 style: TextStyle(fontSize: 20, color: Colors.white),
               ),
             ),

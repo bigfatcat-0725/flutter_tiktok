@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_tiktok/constants.dart';
 import 'package:flutter_tiktok/views/screens/confirm_screen.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddVideoScreen extends StatelessWidget {
@@ -10,14 +11,10 @@ class AddVideoScreen extends StatelessWidget {
   pickVideo(ImageSource src, BuildContext context) async {
     final video = await ImagePicker().pickVideo(source: src);
     if (video != null) {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => ConfirmScreen(
+      Get.to(() => ConfirmScreen(
             videoFile: File(video.path),
             videoPath: video.path,
-          ),
-        ),
-      );
+          ));
     }
   }
 
@@ -98,7 +95,7 @@ class AddVideoScreen extends StatelessWidget {
                 'Add Video',
                 style: TextStyle(
                     fontSize: 20,
-                    color: Colors.black,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold),
               ),
             ),

@@ -24,7 +24,7 @@ class AuthController extends GetxController {
     ever(_user, _setInitialScreen);
   }
 
-  _setInitialScreen(User? user) {
+  _setInitialScreen(User? user) async {
     if (user == null) {
       Get.offAll(() => LoginScreen());
     } else {
@@ -32,14 +32,12 @@ class AuthController extends GetxController {
     }
   }
 
-  void pickImage() async {
-    final pickedImage =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (pickedImage != null) {
+  void pickImage(XFile? thumbnail) async {
+    if (thumbnail != null) {
       Get.snackbar('Profile Picture',
           'You have successfully selected your profile picture!');
     }
-    _pickedImage = Rx<File?>(File(pickedImage!.path));
+    _pickedImage = Rx<File?>(File(thumbnail!.path));
   }
 
   // upload to firebase storage

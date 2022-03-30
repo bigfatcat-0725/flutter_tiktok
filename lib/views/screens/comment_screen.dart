@@ -4,17 +4,25 @@ import 'package:flutter_tiktok/controllers/comment_controller.dart';
 import 'package:get/get.dart';
 import 'package:timeago/timeago.dart' as tago;
 
-class CommentScreen extends StatelessWidget {
+class CommentScreen extends StatefulWidget {
   final String id;
-  CommentScreen({Key? key, required this.id}) : super(key: key);
+  const CommentScreen({Key? key, required this.id}) : super(key: key);
 
+  @override
+  State<CommentScreen> createState() => _CommentScreenState();
+}
+
+class _CommentScreenState extends State<CommentScreen> {
   final TextEditingController _commentController = TextEditingController();
+
   CommentController commentController = Get.put(CommentController());
+
+  void update() => setState(() {});
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    commentController.updatePostId(id);
+    commentController.updatePostId(widget.id);
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -114,9 +122,13 @@ class CommentScreen extends StatelessWidget {
                   ),
                 ),
                 trailing: TextButton(
-                  onPressed: () => commentController.postComment(
-                    _commentController.text,
-                  ),
+                  onPressed: () {
+                    commentController.postComment(
+                      _commentController.text,
+                    );
+                    _commentController.text = '';
+                    update();
+                  },
                   child: const Text(
                     'Send',
                     style: TextStyle(fontSize: 16, color: Colors.white),

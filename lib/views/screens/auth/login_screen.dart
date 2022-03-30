@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tiktok/constants.dart';
 import 'package:flutter_tiktok/views/screens/auth/signup_screen.dart';
@@ -19,23 +20,21 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "Tiktok Clone",
-                style: TextStyle(
-                  fontSize: 35,
-                  color: buttonColor,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-              const Text(
-                "Login",
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.w700,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    "TikTok",
+                    style: TextStyle(
+                      fontSize: 60,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(
-                height: 25,
+                height: 50,
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -67,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                 height: 50,
                 decoration: BoxDecoration(
                   color: buttonColor,
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
                 ),
                 child: InkWell(
                   onTap: () => authController.loginUser(
@@ -93,14 +92,14 @@ class LoginScreen extends StatelessWidget {
                 children: [
                   const Text(
                     "Don't have an account? ",
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 15),
                   ),
                   InkWell(
                     onTap: () => Get.to(() => SignupScreen()),
                     child: Text(
                       "Register",
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 15,
                         color: buttonColor,
                       ),
                     ),
